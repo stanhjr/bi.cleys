@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42">
-  <g id="icon-6" transform="translate(0 0.198)">
-    <rect id="Rectangle_226" data-name="Rectangle 226" width="42" height="42" transform="translate(0 -0.198)" fill="none"/>
-    <line id="Line_106" data-name="Line 106" x2="34" transform="translate(3 35.802)" fill="none" stroke="#e65125" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    <path id="Path_135" data-name="Path 135" d="M56,63.332V33.305A1.305,1.305,0,0,1,57.305,32H78.193A1.305,1.305,0,0,1,79.5,33.305V63.332" transform="translate(-46.862 -26.751)" fill="none" stroke="#e65125" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    <ellipse id="Ellipse_494" data-name="Ellipse 494" cx="1.5" cy="2" rx="1.5" ry="2" transform="translate(24 18.802)" fill="#e65125"/>
-  </g>
-</svg>
