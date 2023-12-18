@@ -1,4 +1,5 @@
 from django import forms
+from snowpenguin.django.recaptcha3.fields import ReCaptchaField
 
 from apps.website.models.contact_page import ContactFeedbackModel
 from apps.website.models.make_appointment import Feedback, ServicesAppointment
@@ -10,6 +11,7 @@ class FeedbackForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
+    recaptcha = ReCaptchaField()
 
     class Meta:
         model = Feedback
@@ -20,6 +22,8 @@ class FeedbackForm(forms.ModelForm):
 
 
 class ContactFeedbackForm(forms.ModelForm):
+    recaptcha = ReCaptchaField()
+
     class Meta:
         model = ContactFeedbackModel
         fields = [

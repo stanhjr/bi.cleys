@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
+import django
 from pathlib import Path
+from django.utils.translation import gettext_lazy
+django.utils.translation.ugettext_lazy = gettext_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,13 +42,11 @@ INSTALLED_APPS = [
     'ckeditor',
     'django_filters',
     'admin_reorder',
-    'debug_toolbar',
+    'snowpenguin.django.recaptcha3',
     'apps.website',
 
 ]
-INTERNAL_IPS = [
-    # '127.0.0.1',
-]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,7 +54,6 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'admin_reorder.middleware.ModelAdminReorder',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -225,3 +225,20 @@ CKEDITOR_CONFIGS = {
         'format_tags': 'p;h2;h3;h4;h5;h6',
     },
 }
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' if DEBUG else \
+                'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = os.getenv('SENDGRID_API_KEY')
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = 'phenix.be <artem@codelines.be>'
+DEFAULT_TO_EMAIL = 'artem@codelines.be'
+
+RECAPTCHA_DISABLE = os.getenv('RECAPTCHA_DISABLE', True)
+RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
+RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_DEFAULT_ACTION = 'generic'
+RECAPTCHA_SCORE_THRESHOLD = 0.5

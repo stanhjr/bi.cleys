@@ -30,9 +30,13 @@ class MakeAppointmentPageModelAdmin(NoDeleteModelAdminMixin, admin.ModelAdmin):
 @admin.register(Feedback)
 class FeedbackAdmin(admin.ModelAdmin):
     list_display = ('email', 'full_name', 'created_at')
+    search_fields = ('email', 'full_name')
     formfield_overrides = {
         models.ManyToManyField: {'widget': CheckboxSelectMultiple},
     }
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).order_by('-created_at')
 
 
 @admin.register(ServicesAppointment)

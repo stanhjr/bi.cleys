@@ -29,4 +29,8 @@ class ContactPageAdmin(NoDeleteModelAdminMixin, admin.ModelAdmin):
 
 @admin.register(ContactFeedbackModel)
 class ContactFeedbackAdmin(admin.ModelAdmin):
+    search_fields = ('email', 'full_name')
     list_display = ('email', 'full_name', 'created_at')
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).order_by('-created_at')
