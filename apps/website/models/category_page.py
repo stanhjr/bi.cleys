@@ -73,28 +73,6 @@ class CalculatorBlock(AbstractCalculatorBlock):
     page = models.OneToOneField(CategoryPage, on_delete=models.CASCADE, related_name='calculator_block')
 
 
-class DescriptionBlock(TimeStampedModel):
-    parent = models.OneToOneField(CategoryPage, related_name="description_block", on_delete=models.CASCADE)
-    title = models.TextField()
-    sub_title = models.TextField()
-    content = RichTextField(verbose_name='Description Block Content')
-    image = models.ImageField(
-        upload_to='description_block/',
-        verbose_name='image'
-    )
-    image_505_556 = ImageSpecField(
-        source='image',
-        processors=[
-            Transpose(),
-            ResizeToFill(
-                width=505,
-                height=556,
-            )
-        ],
-        format='JPEG',
-    )
-
-
 class ContentBlock(TimeStampedModel):
     page = models.OneToOneField(CategoryPage, related_name="content_block", on_delete=models.CASCADE)
     title = models.TextField()

@@ -10,9 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
-import django
 from pathlib import Path
+
+import django
 from django.utils.translation import gettext_lazy
+
 django.utils.translation.ugettext_lazy = gettext_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

@@ -1,9 +1,10 @@
+from django.conf import settings
+from django.core.mail import EmailMessage
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.core.mail import EmailMessage
+
 from apps.website.models.contact_page import ContactFeedbackModel
 from apps.website.models.make_appointment import Feedback
-from django.conf import settings
 
 
 @receiver(post_save, sender=ContactFeedbackModel)

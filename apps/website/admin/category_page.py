@@ -7,7 +7,6 @@ from apps.website.models.category_page import (
     CategorySliderModel,
     ContentBlock,
     CTAOptionalBlock,
-    DescriptionBlock,
     ProjectBlock,
     RelatedProjects,
     ResultBlock,
@@ -22,11 +21,6 @@ class CategorySliderInline(admin.StackedInline):
 
 class RelatedProjectsInline(admin.StackedInline):
     model = RelatedProjects
-    extra = 0
-
-
-class DescriptionBlockInline(admin.StackedInline):
-    model = DescriptionBlock
     extra = 0
 
 
@@ -74,9 +68,6 @@ class AboutUsPageAdmin(admin.ModelAdmin):
         AnimationBlockInline,
         ContentBlockInline,
         CalculatorBlockInline,
-
-
-        # DescriptionBlockInline,
         VideoBlockInline,
         ProjectBlockInline,
         CTAOptionalBlockInline,
