@@ -1,0 +1,11 @@
+{% if page_model.animation_block %}
+    {% if page_model.animation_block.animation_type == 'crepi' %}
+        {% include 'includes/animations/crepi.html' %}
+    {% elif page_model.animation_block.animation_type == 'dakwerken' %}
+        {% include 'includes/animations/dakwerken.html' %}
+    {% elif page_model.animation_block.animation_type == 'ramen_deuren' %}
+         {% include 'includes/animations/ramen_deuren.html' %}
+    {% elif page_model.animation_block.animation_type == 'gevelisolatie' %}
+        {% include 'includes/animations/gevelisolatie.html' %}
+    {% endif %}
+{% endif %}

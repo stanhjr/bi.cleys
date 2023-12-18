@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+    <section class="showcase --small --blue-bg">
+        <div class="showcase__inner">
+
+            <div class="showcase__item">
+                <div class="showcase__item-inner">
+                    <div class="container">
+                        <div class="showcase__content">
+                            <h1>{{ page_model.head_title }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <article class="article article-privacy">
+        <div class="container">
+            <div class="article__inner article-body --content">
+                <h2>{{ page_model.title }}</h2>
+                {{ page_model.content | safe }}
+                {% for sub_block in page_model.sub_blocks.all %}
+                    <h4>{{ sub_block.title }}</h4>
+                    {{ sub_block.content | safe }}
+                {% endfor %}
+            </div>
+        </div>
+    </article>
+
+        {% include 'includes/reviews.html' %}
+
+{% endblock %}

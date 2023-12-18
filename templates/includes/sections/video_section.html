@@ -1,0 +1,24 @@
+{% if page_model.video_block %}
+<section class="video-section --blue-bg">
+    <span class="logo-bg aos-init aos-animate" aria-hidden="true" data-aos="fade-up"></span>
+    <div class="container">
+        <div class="video-section__inner">
+            <div class="video-section__header section-title --section-title-center" data-aos="fade-up">
+                <h5 class="subtitle">{{ page_model.video_block.sub_title }}</h5>
+                <h2>{{ page_model.video_block.title }}</h2>
+            </div>
+            <div class="video-section__video" data-aos="fade-up">
+                <div class="video-block">
+                    <video src="{{ page_model.video_block.video.url }}" poster="{{ page_model.video_block.video_poster.url }}">
+                        Sorry, your browser doesn't support HTML5 video tag.
+                    </video>
+                    <span class="video-block__play js-video-play"></span>
+                </div>
+            </div>
+            <div class="btn-block">
+                <a href="#" class="btn --btn-arrow">Bereken jouw prijs</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}

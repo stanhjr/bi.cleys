@@ -1,0 +1,63 @@
+{% load static %}
+<div class="footer-top">
+    <div class="container --small">
+        <div class="footer-top__inner">
+            <div class="footer-top__col --intro">
+                <div class="footer-top__logo">
+                    <img src="{% static 'assets/images/Cleys.svg' %}" alt="">
+                </div>
+                <div class="footer-top__desc">{{ footer_info.description }}</div>
+            </div>
+            <div class="footer-top__col --contact">
+                <div class="f-contact">
+                    <a href="mailto:info@cleys.be">
+                        <div class="icon">
+                            <img src="{% static 'assets/images/icon-mail.svg' %}" alt="">
+                        </div>
+                        <div>Mail ons <span>{{ contact_info.email }}</span></div>
+                    </a>
+                    <a href="tel:003238779323">
+                        <div class="icon">
+                            <img src="{% static 'assets/images/icon-tel.svg' %}" alt="">
+                        </div>
+                        <div>Bel ons op <span>{{ contact_info.phone }}</span></div>
+                    </a>
+                    <a href="https://www.gevelcalculator.cleys.be/">
+                        <div class="icon">
+                            <img src="{% static 'assets/images/icon-calc.svg' %}" alt="">
+                        </div>
+                        <div>Bereken jouw prijs <span>Gebruik onze calculator</span></div>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-top__col --menu">
+                <h6 class="subtitle">Diensten</h6>
+                <ul>
+                     {% for page in category_pages %}
+                          <li><a href="{% url 'category_page_detail' slug=page.slug %}"> {{ page.name }} </a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="footer-top__col --menu">
+                <h6 class="subtitle">Menu</h6>
+                <ul>
+                    <li><a href="{% url 'about_us' %}">Over ons</a></li>
+                   <li><a href="{% url 'project_list' %}">Projecten</a></li>
+                    <li><a href="{% url 'premium_loans' %}">Premies & leningen</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer-bottom">
+    <div class="container">
+        <div class="footer-bottom__inner">
+            <ul>
+                <li><a href="#">Algemene voorwaarden</a></li>
+                <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
+                <li><a href="#">Cookiestatement</a></li>
+            </ul>
+            <div class="codelines">#codedwithlove by <a href="https://codelines.be" target="_blank" rel="noopener noreferrer">Codelines</a></div>
+        </div>
+    </div>
+</div>

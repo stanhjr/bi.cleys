@@ -1,0 +1,16 @@
+{% if appointment_model %}
+    <section class="appointment">
+        <div class="container --small">
+            <div class="appointment__inner" data-aos="fade-up">
+                <div class="appointment__img">
+                    <img src="{{ appointment_model.image.url }}" alt="">
+                </div>
+                <div class="appointment__content --blue-bg">
+                    <h5 class="subtitle">{{ appointment_model.sub_title }}</h5>
+                    <h3 class="like-h3">{{ appointment_model.description }}</h3>
+                    <a href="{% url 'make_appointment' %}" class="btn --btn-arrow">Boek afspraak</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}

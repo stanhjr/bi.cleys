@@ -1,0 +1,25 @@
+<section class="calculator --full-grid --blue-bg">
+    <div class="calculator__img">
+        <img src="{% firstof page_model.calculator_block.image_cut.url calculator.image_cut.url %}" alt="">
+    </div>
+    <div class="calculator__content">
+        <div class="calculator__header" data-aos="fade-up">
+            <h3>{{ calculator.title }}</h3>
+        </div>
+        <div class="calculator__step" data-aos="fade-up">
+            <div class="calculator__step-item">
+                <h5 class="subtitle">{{ calculator.sub_title }}</h5>
+                <h4>{{ calculator.description }}</h4>
+                <div class="calculator__step-option">
+                    <div>{{ calculator.new_construction_text }}</div>
+                    <div>{{ calculator.renovation_text }}</div>
+                </div>
+            </div>
+            <div class="calculator__step-item --step-2">
+                <h5 class="subtitle">{{ calculator.sub_title_two }}</h5>
+                <h4>{{ calculator.description_two }}</h4>
+            </div>
+        </div>
+        <a href="https://www.gevelcalculator.cleys.be/" class="btn --btn-arrow">Bereken in minder dan 3 minuten</a>
+    </div>
+</section>

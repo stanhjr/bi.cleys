@@ -1,0 +1,11 @@
+.env
+.idea
+/.vscode/
+*.mo
+*.pyc
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+docker-compose.override.yml

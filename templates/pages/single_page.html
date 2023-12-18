@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+     {% include 'includes/slider_head.html' %}
+
+    <section class="project-item">
+        <div class="container">
+            <div class="project-item__inner">
+                <div class="project-item__header section-title --section-title-center">
+                    <h5 class="subtitle">{{ page_model.gallery_sub_title }}</h5>
+                    <h2 class="like-h3">{{ page_model.gallery_title }}</h2>
+                </div>
+                <div class="project-item__slider">
+                    <div class="project-item__slider-for js-project-item-slider-for --flex-slider">
+                        {% for item in page_model.gallery_items.all %}
+                            {% if item.video %}
+                                <div class="for-item__video">
+                                    <div class="video-block">
+                                        <video src="{{ item.video.url }}" poster="{{ item.video_poster.url }}">
+                                            Sorry, your browser doesn't support HTML5 video tag.
+                                        </video>
+                                        <span class="video-block__play js-video-play"></span>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="for-item__img">
+                                    <img src="{{ item.image_cut.url }}" alt="">
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    
+                        <!-- NOTE youtube video example-->
+                        <!-- <div class="for-item">
+                            <div class="for-item__inner">
+                                <div class="for-item__video">
+                                    <div class="youtube-video">
+                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/8CZuaqVYni4?si=tITH-74UxlovPdHC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    
+                    </div>
+
+                    <div class="project-item__slider-nav js-project-item-slider-nav">
+
+                        <!-- NOTE thumbnail 380x380px -->
+                         {% for item in page_model.gallery_items.all %}
+                             {% if item.video %}
+                                 <div class="nav-img --video">
+                                    <div class="img">
+                                        <img src="{{ item.video_poster.url }}" alt="">
+                                    </div>
+                                </div>
+                             {% else %}
+                                 <div class="nav-img">
+                                <div class="img">
+                                   <img src="{{ item.image_cut.url }}" alt="">
+                                </div>
+                            </div>
+                             {% endif %}
+                        {% endfor %}
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'includes/sections/booking_section.html' %}
+
+    <section class="specification --gray-bg">
+        <div class="container">
+            <div class="specification__inner">
+                <div class="specification__title">
+                    <h5 class="subtitle">CLEYS</h5>
+                    <h3 class="like-h3">{{ page_model.specifications_title }}</h3>
+                </div>
+                <div class="specification__list">
+                    {% for specification in page_model.specifications_block_one.all %}
+                    <div class="specification__list-item">
+                        
+                            <h6>{{ specification.title }}</h6>
+                            <div>{{ specification.content }}</div>
+                        
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="specification__title">
+                    <h5 class="subtitle">CLEYS</h5>
+                    <h3 class="like-h3">{{ page_model.specifications_block_tow_title }}</h3>
+                </div>
+                <div class="specification__content --content">
+                     {% for specification in page_model.specifications_block_two.all %}
+                    <div class="col">
+                        <p>{{ specification.content }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    {% include 'includes/sections/result.html' %}
+
+    {% include 'includes/sections/calculator_section.html' %}
+
+    <section class="similar-projects">
+        <div class="container">
+            <div class="similar-projects__inner">
+                <div class="similar-projects__header section-title --section-title-center" data-aos="fade-up">
+                    <h5 class="subtitle">Onze projecten</h5>
+                    <h2 class="like-h3">Vergelijkbare projecten</h2>
+                </div>
+                <div class="similar-projects__list">
+                    {% for similar_project in similar_projects %}
+                         <div class="similar-projects__item" data-aos="fade-up">
+                        <a href="{% url 'project_single_detail' pk=similar_project.pk %}" class="project-single">
+                            <div class="project-single__img">
+                                {% for item in similar_project.preview_images.all %}
+                                    <img src="{{ item.image_cut.url }}" alt="">
+                                {% endfor %}
+                            </div>
+                            <ul class="tag-list">
+                                {% for category in similar_project.categories.all %}
+                                    <li>{{ category.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+        {% include 'includes/reviews.html' %}
+    
+{% endblock %}

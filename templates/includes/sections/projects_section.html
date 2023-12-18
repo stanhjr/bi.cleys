@@ -1,0 +1,36 @@
+<section class="projects">
+    <div class="container">
+        <div class="projects__inner">
+            <div class="projects__header section-title --section-title-center" data-aos="fade-up">
+                <h5 class="subtitle">{{ page_model.completed_projects_block_sub_title }}</h5>
+                <h2 class="like-h3">{{ page_model.completed_projects_block_title }}</h2>
+                <div class="projects__desc">
+                    <p>{{ page_model.completed_projects_block_description }}</p>
+                </div>
+                <div class="btn-block">
+                    <a href="{% url 'project_list' %}" class="btn --btn-arrow">Alle projecten</a>
+                </div>
+            </div>
+            <div class="projects__slider js-projects-slider --flex-slider" data-aos="fade-up">
+                {% for project in projects %}
+                <div class="projects__item">
+                    <a href="{% url 'project_single_detail' pk=project.pk %}" class="project-single">
+                        <div class="project-single__img">
+                            <!-- NOTE The second img showing by hover -->
+                            {% for image_item in project.preview_images.all %}
+                                <img src="{{ image_item.image.url }}" alt="">
+                            {% endfor %}
+                        </div>
+                        <ul class="tag-list">
+                            {% for category in project.related_categories.all %}
+                            <li>{{ category.name }}</li>
+                         
+                            {% endfor %}
+                        </ul>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

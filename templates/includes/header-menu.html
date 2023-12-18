@@ -1,0 +1,73 @@
+{% load static %}
+<div class="container">
+    <div class="logo hide-desktop"><a href="/" aria-label="Cleys"><img src="{% static 'assets/images/Cleys.svg' %}" alt=""></a></div>
+    <div id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+<nav class="header-nav">
+    <div class="header-nav__top">
+        <div class="container">
+            <div class="header-nav__top-inner">
+                <div class="header-nav__reviews">
+                    <div>{{ reviews.stars }}/5</div>
+                    <div class="stars">
+                        <div class="solid"></div>
+                        <div class="solid"></div>
+                        <div class="solid"></div>
+                        <div class="solid"></div>
+                        <div class="solid"></div>
+                    </div>
+                    <span>({{ reviews.all_reviews }} reviews)</span>
+                </div>
+                <div class="header-nav__contact">
+                    <a href="mailto:{{ contact_info.email }}"><img src="{% static 'assets/images/icon-mail.svg' %}" alt="">{{ contact_info.email }}</a>
+                    <a href="tel:{{ contact_info.phone }}"><img src="{% static 'assets/images/icon-tel.svg' %}" alt="">{{ contact_info.phone }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-nav__bottom">
+        <div class="container">
+            <div class="header-nav__bottom-inner">
+                <div class="logo hide-mobile"><a href="/" aria-label="Cleys"><img src="{% static 'assets/images/Cleys.svg' %}" alt=""></a></div>
+                <ul class="main-menu">
+                    <li class="submenu active">
+                        <span>Wat we doen</span>
+                        <div class="submenu-child">
+                            <ul>
+                                {% for page in category_pages %}
+                                    {% if not page.parent %}
+                                        <li>
+                                        <a href="{% url 'category_page_detail' slug=page.slug %}"> {{ page.name }} </a>
+                                        {% if page.children.all %}
+                                            <ul>
+                                            {% for page_child in page.children.all %}
+                                                <li><a href="{% url 'category_page_detail' slug=page_child.slug %}"> {{ page_child.name }} </a></li>
+                                            {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="{% url 'about_us' %}">Over ons</a></li>
+                    <li><a href="{% url 'project_list' %}">Projecten</a></li>
+                    <li><a href="{% url 'premium_loans' %}">Premies & Leningen</a></li>
+                    <li><a href="{% url 'contact_page' %}">Contact</a></li>
+                </ul>
+                <div class="btn-block">
+                    <a href="https://www.gevelcalculator.cleys.be/" target="_blank" class="btn">Calculator</a>
+                    <a href="{% url 'make_appointment' %}" class="btn --btn-transparent-orange">Boek afspraak</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div id="menu-overlay" class="overlay"></div>

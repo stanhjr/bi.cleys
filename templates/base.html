@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="nl">
+
+<head>
+    <meta name='robots' content='noindex, nofollow' />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% firstof page_model.meta_title meta.meta_title  %}</title>
+    <meta name="description" content="{% firstof page_model.meta_description meta.meta_description  %}">
+    <!--font, css, js -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/main.css' %}" />
+    <script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/slick.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/cocoen.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/aos.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/template.js' %}"></script>
+</head>
+
+<body>
+    {% if is_home_page %}<div class="wrapper home-page">{% else %}<div class="wrapper">{% endif %}
+        <header id="header-menu">
+            {% include 'includes/header-menu.html' %}
+        </header>
+        <main>{% block content %}{% endblock %}</main>
+        <footer id="footer-page">
+            {% include 'includes/footer.html' %}
+        </footer>
+    </div>
+</body>
+
+</html>

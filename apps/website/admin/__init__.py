@@ -1,0 +1,10 @@
+import apps.website.admin.about_us_page
+import apps.website.admin.all_project_page
+import apps.website.admin.base
+import apps.website.admin.category_page
+import apps.website.admin.contacts_page
+import apps.website.admin.index_page
+import apps.website.admin.make_appointment_page
+import apps.website.admin.premium_loans_page
+import apps.website.admin.privacy_policy_page
+import apps.website.admin.single_project

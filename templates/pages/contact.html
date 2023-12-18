@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+        {% include 'includes/slider_head.html' %}
+        
+        <section class="contact">
+            <div class="container">
+                <div class="contact__inner">
+                    <div class="contact__content">
+                        <div class="contact-info">
+                            <a href="mailto:{{ contact_info.email }}">
+                                <div class="icon">
+                                    <img src="{% static 'assets/images/icon-mail-white.svg' %}" alt="">
+                                </div>
+                                <div><span>Mail ons</span>{{ contact_info.email }}</div>
+                            </a>
+                            <a href="tel:{{ contact_info.phone }}">
+                                <div class="icon">
+                                    <img src="{% static 'assets/images/icon-tel-white.svg' %}" alt="">
+                                </div>
+                                <div><span>Bel ons op</span>{{ contact_info.phone }}</div>
+                            </a>
+                        </div>
+                        <div class="contact__title">
+                            <h2 class="like-h4">{{ page_model.address_title }}</h2>
+                        </div>
+                        <address>
+                            {% for paragraph_model in page_model.address_paragraphs.all %}
+                                {{ paragraph_model.paragraph }} <br>
+                            {% endfor %}
+                        </address>
+                        <a href="{{ page_model.address_link }}">{{ page_model.link_title }}</a>
+                        <div class="contact__title">
+                            <h2 class="like-h4">Social media</h2>
+                        </div>
+                        <div class="soc-block">
+                            <a href="{{ contact_info.facebook_link }}" target="_blank" rel="noopener noreferrer" class="facebook" aria-label="facebook"></a>
+                            <a href="{{ contact_info.instagram_link }}" target="_blank" rel="noopener noreferrer" class="instagram" aria-label="instagram"></a>
+                        </div>
+                    </div>
+                    <div class="contact__form">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="col col-1">
+                                    <label for="{{ form.full_name.id_for_label }}">Volledige naam *</label>
+                                    {{ form.full_name }}
+                                </div>
+                                <div class="col col-1">
+                                    <label for="{{ form.email.id_for_label }}">E-mailadres *</label>
+                                    {{ form.email }}
+                                </div>
+                                <div class="col col-1">
+                                    <label for="{{ form.phone.id_for_label }}">GSM / Tel. Nr.  *</label>
+                                    {{ form.phone }}
+                                </div>
+                                <div class="col col-1">
+                                    <label for="{{ form.phone.id_for_label }}">Postcode*</label>
+                                    {{ form.post_code }}
+                                </div>
+                                <div class="col col-1">
+                                    <label for="{{ form.phone.id_for_label }}">Bericht*</label>
+                                    {{ form.message }}
+                                </div>
+
+                                <div class="col col-1 submit-row">
+                                    <div class="privacy">Als je dit verstuurt ga je akkoord met onze <a href="{% url 'privacy_policy' %}" target="_blank">privacy policy</a>.</div>
+                                    <button type="submit" class="btn --btn-arrow">Afspraak boeken</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {% include 'includes/reviews.html' %}
+
+{% endblock %}

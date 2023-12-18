@@ -1,0 +1,28 @@
+{% if result_white %}
+    <section class="result --white-bg">
+{% else %}
+    <section class="result --blue-bg">
+{% endif %}
+
+    <div class="container">
+        <span class="logo-bg aos-init aos-animate" aria-hidden="true" data-aos="fade-up"></span>
+        <div class="result__inner">
+            <div class="result__header section-title --section-title-center" data-aos="fade-up">
+                <h5 class="subtitle">{{ page_model.result_block.sub_title }}</h5>
+                <h2>{{ page_model.result_block.title }}</h2>
+            </div>
+    
+            <div class="result__before-after before-after-slider">
+                <!-- NOTE Both images should to have a same size for before-after slider  -->
+                <div class="cocoen">
+                    <img src="{{ page_model.result_block.image_before_cut.url }}" alt="" loading="lazy" slot="before" width="943">
+                    <img src="{{ page_model.result_block.image_after_cut.url }}" alt="" loading="lazy" slot="after" width="943">
+                </div>
+            </div>
+    
+            <div class="btn-block">
+                <a href="#" class="btn --btn-arrow">Bereken jouw prijs</a>
+            </div>
+        </div>
+    </div>
+</section>

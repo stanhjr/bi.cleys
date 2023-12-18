@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+    <!-- NOTE "showcase" almost on all pages, class="--big" only on the home page -->
+     {% include 'includes/slider_head_index_only.html' %}
+    
+    {% include 'includes/sections/introduction_section.html' %}
+    
+    <section class="services-overview">
+        <div class="container">
+            <div class="services-overview__inner --blue-bg">
+                <span class="logo-bg" aria-hidden="true" data-aos="fade-up"></span>
+                <div class="services-overview__header" data-aos="fade-up">
+                    <h5 class="subtitle">{{ page_model.overview_sub_title }}</h5>
+                    <h2>{{ page_model.overview_title }}</h2>
+                </div>
+                <div class="services-overview__list" data-aos="fade-up">
+                    {% for category in categories %}
+                          <a href="{% url 'category_page_detail' slug=category.slug %}" class="services-overview__item">
+                        <div class="services-overview__item-header">
+                            <div class="icon">
+                                {% if category.index_preview_icon %}
+                                <img src="{{ category.index_preview_icon.url }}" alt="">
+                                {% endif %}
+                            </div>
+                            <h3 class="like-h5">{{ category.name }}</h3>
+                        </div>
+                        <div class="services-overview__item-content">{{ category.index_preview_text }}</div>
+                        <span class="read-more --white">Lees meer</span>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    {% include 'includes/sections/booking_section.html' %}
+    
+   {% include 'includes/sections/calculator_section.html' %}
+
+    {% include 'includes/sections/projects_section.html' %}
+
+    {% include 'includes/reviews.html' %}
+{% endblock %}

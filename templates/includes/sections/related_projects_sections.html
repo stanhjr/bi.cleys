@@ -1,0 +1,28 @@
+{% if page_model.related_projects.all %}
+<section class="related-projects">
+    <div class="container">
+        <div class="related-projects__inner">
+            <div class="related-projects__header section-title --section-title-center" data-aos="fade-up">
+                <h5 class="subtitle">{{ page_model.related_projects_block_sub_title }}</h5>
+                <h2 class="like-h3">{{ page_model.related_projects_block_title }}</h2>
+            </div>
+            <div class="related-projects__list">
+                {% for project in  page_model.related_projects.all %}
+                     <div data-aos="fade-up">
+                    <a href="/{{ project.path_to_page | lower }}" class="related-projects__item">
+                        <div class="related-projects__item-img">
+                            <img src="{{ project.image_cut.url }}" alt="">
+                        </div>
+                        <div class="related-projects__item-content">
+                            <h4 class="like-h4">{{ project.title }}</h4>
+                            <div class="desc">{{ project.description }}</div>
+                        </div>
+                        <span class="read-more --orange">{{ project.button_text }}</span>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}

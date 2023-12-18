@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+        {% include 'includes/slider_head.html' %}
+
+            <section class="content-element ce-content-center --gray-bg">
+                <div class="container">
+                    <div class="ce__inner" data-aos="fade-up">
+                        <div class="ce__content">
+                            <div class="ce__title">
+                                <h5 class="subtitle">CLEYS</h5>
+                                <h3 class="like-h3">{{ page_model.title }}</h3>
+                            </div>
+                            <div class="ce__desc --content">
+                                <p>{{ page_model.description }}</p>
+                            </div>
+                            <div class="btn-block">
+                                <a href="{{ page_model.button_link }}" class="btn --btn-arrow">{{ page_model.button_text }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="renovation-credit">
+                <div class="container">
+                    <div class="renovation-credit__inner">
+                        
+                        <div class="renovation-credit__content">
+                            <div class="renovation-credit__header">
+                                <h5 class="subtitle">{{ page_model.renovation_sub_title }}</h5>
+                                <h3 class="like-h3">{{ page_model.renovation_title }}</h3>
+                            </div>
+                            <div class="renovation-credit__desc --content">
+                                <p>{{ page_model.renovation_block | safe  }}</p>
+                            </div>
+                        </div>
+                        <div class="renovation-credit__iframe">
+                            <iframe scrolling="no" src="https://www.kbc.be/co2-p-wgt/visual-widget/resources/0001/nl/?creditAmount=50000&amp;intermediaryName=CLEYS&amp;intermediaryTypeCode=0244&amp;creditPurposeCode=60290&amp;isLogoShown=true&amp;hideRequestLoanButton=false&amp;isCreditAmountEditable=true&amp;wmode=opaque#/loa/simulation" width="100%" data-embed="true" style="border:none;width:100%;" frameborder="0" height="670px"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-element ce-img-content ce-img-with-link --ce-img-left --ce-big-content --gray-bg">
+                <div class="container">
+                    <div class="ce__inner" data-aos="fade-up">
+                        <div class="ce__img">
+                            <img src="{{ page_model.renovation_premium_image.url }}" alt="">
+                            <a href="/afspraak-boeken.php" class="booking-link">
+                                <h3 class="like-h5">Boek afspraak</h3>
+                                <div class="desc">Overloop met ons de mogelijkheden, we komen langs met gratis advies</div>
+                                <span class="read-more --white">Boek afspraak</span>
+                            </a>
+                        </div>
+                        <div class="ce__content">
+                            <div class="ce__title">
+                                <h5 class="subtitle">{{ page_model.renovation_premium_sub_title }}</h5>
+                                <h3 class="like-h3">{{ page_model.renovation_premium_title }}</h3>
+                            </div>
+                            <div class="ce__desc --content">
+                                {{ page_model.renovation_premium_block | safe }}
+                            </div>
+                            <div class="btn-block">
+                                <a href="#" class="btn">Kom ik in aanmerking?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-element ce-content-content">
+                <div class="container">
+                    <div class="ce__inner" data-aos="fade-up">
+                        <div class="ce__content">
+                            <div class="ce__title">
+                                <h5 class="subtitle">{{ page_model.get_premium_block_left_sub_title }}</h5>
+                                <h3 class="like-h3">{{ page_model.get_premium_block_left_title }}</h3>
+                            </div>
+                            <div class="ce__desc --content">
+                                {{ page_model.get_premium_block_left | safe }}
+                            </div>
+                        </div>
+                        <div class="ce__content --blue-bg">
+                            <div class="ce__title">
+                                <h3 class="like-h4">{{ page_model.get_premium_block_right_title }}</h3>
+                            </div>
+                            <div class="ce__desc --content">
+                                {{ page_model.get_premium_block_right | safe }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-element ce-img-content --ce-img-left --ce-big-content --blue-bg">
+                <span class="logo-bg" data-aos="fade-up"></span>
+                <div class="container">
+                    <div class="ce__inner" data-aos="fade-up">
+                        <div class="ce__img">
+                            <img src="{{ page_model.personal_situation_image.url }}" alt="">
+                        </div>
+                        <div class="ce__content">
+                            <div class="ce__title">
+                                <h5 class="subtitle">{{ page_model.personal_situation_title }}</h5>
+                                <h3 class="like-h3">{{ page.model.personal_situation_sub_title }}</h3>
+                            </div>
+                            <div class="ce__desc --content">
+                               {{ page_model.personal_situation_block | safe }}
+                            </div>
+                            <div class="btn-block">
+                                <a href="https://apps.energiesparen.be/simulator-mijnverbouwpremie" target="_blank" rel="noopener noreferrer" class="btn">Premie berekenen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        {% include 'includes/reviews.html' %}
+
+{% endblock %}

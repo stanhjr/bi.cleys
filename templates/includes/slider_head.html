@@ -1,0 +1,36 @@
+<section class="showcase --blue-bg">
+        {% if page_model.show_slider %}
+            <div class="showcase__slider js-showcase-slider --flex-slider">
+        {% else %}
+            <div class="showcase__inner">
+        {% endif %}
+
+            {% for slider in page_model.sliders.all %}
+                <div class="showcase__item">
+                    <div class="showcase__item-inner">
+                        {% if slider.banner_image %}
+                            <div class="showcase__bg">
+                                <img src="{{ slider.banner_image.url }}" alt="">
+                            </div>
+                        {% endif %}
+                        <div class="container">
+                            <div class="showcase__content">
+                                <h1>{{ slider.slider_title }}</h1>
+                                <div class="showcase__desc">{{ slider.slider_body }}</div>
+                                <div class="showcase__btn-block btn-block">
+                                    {% if page_model.show_send_reviews_button %}
+                                        <div>
+                                            <a href="{% url 'make_appointment' %}" target="_blank" class="btn --btn-transparent-white --btn-arrow">Gratis offerte</a>
+                                        </div>
+                                    {% else %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+</section>
+
+

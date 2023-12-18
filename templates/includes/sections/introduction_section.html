@@ -1,0 +1,31 @@
+<section class="introduction introduction-with-list --gray-bg">
+                <div class="container">
+                    <div class="introduction__inner">
+                        <div class="introduction__left">
+                            <div class="introduction__header" data-aos="fade-up">
+                                <h5 class="subtitle">{{ page_model.introduction_left_sub_title }}</h5>
+                                <h2 class="like-h3">{{ page_model.introduction_left_title }}</h2>
+                                <div class="intro">
+                                    <p>{{ page_model.introduction_left_intro }}</p>
+                                </div>
+                            </div>
+                            <div class="introduction__desc --content" data-aos="fade-up">
+                                {{ page_model.introduction_left_content | safe }}
+                            </div>
+                            <div class="btn-block">
+                                <a href="{% url 'make_appointment' %}" class="btn --btn-arrow">Boek een afspraak</a>
+                            </div>
+                        </div>
+                        <div class="introduction__right">
+                            <h5 class="subtitle">{{ page_model.introduction_right_sub_title }}</h5>
+                            <h3>{{ page_model.introduction_right_title }}</h3>
+                            <ul class="check-list">
+                                {{ page_model.get_introduction_right_content | safe }}
+                            </ul>
+                            <div class="btn-block">
+                                <a href="{% url 'make_appointment' %}" class="btn --btn-arrow">Gratis offerte</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>

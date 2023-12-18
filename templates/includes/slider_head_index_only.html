@@ -1,0 +1,37 @@
+<section class="showcase --big --blue-bg">     
+        {% if page_model.show_slider %}
+            <div class="showcase__slider js-showcase-slider --flex-slider">
+        {% else %}
+            <div class="showcase__inner">
+        {% endif %}
+         {% for slider in page_model.sliders.all %}
+            <div class="showcase__item">
+                <div class="showcase__item-inner">
+                    <div class="showcase__bg">                                
+                        <picture>
+                            <!-- NOTE for showcase "--big" it is advisable to add to backend a field for vertical image for best view on mobile devices (~ proportion of image is 9:16). Use this image in <source> element below -->
+                            <source srcset="{{ slider.banner_image.url }}" media="(orientation: portrait)" />
+                            <img src="{{ slider.banner_image.url }}" alt="">
+                        </picture>
+                    </div>
+                    <div class="container">
+                        <div class="showcase__content">
+                            <h1>{{ slider.slider_title }}</h1>
+                            <div class="showcase__desc">{{ slider.slider_body }}</div>
+                            <div class="showcase__btn-block btn-block">
+                                <div>
+                                    <a href="https://www.gevelcalculator.cleys.be/" target="_blank" class="btn --btn-arrow">Gebruik de gevelcalculator</a>
+                                    <span>Bereken jouw prijs in 1 minuut</span>
+                                </div>
+                                <div>
+                                    <a href="{% url 'about_us' %}" class="btn --btn-arrow --btn-white">Boek een afspraak</a>
+                                    <span>Vrijblijvende analyse ter plaatse</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </section>

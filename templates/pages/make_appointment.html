@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        {% include 'includes/slider_head.html' %}
+
+        <section class="booking-section">
+            <div class="container">
+                <div class="booking-section__inner">
+                    <div class="booking-section__content">
+                        <div class="booking-section__header">
+                            <h5 class="subtitle">{{ page_model.introduction_sub_title }}</h5>
+                            <h2 class="like-h3">{{ page_model.introduction_title }}</h2>
+                        </div>
+                        <div class="booking-section__list">
+                            {% for advantage in page_model.advantages.all %}
+                                <div class="booking-section__list-item">
+                                    <h5>{{ advantage.title }}</h5>
+                                    <div>{{ advantage.text }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="booking-section__form">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="col col-1">
+                                    <label for="{{ form.full_name.id_for_label }}">Volledige naam *</label>
+                                    {{ form.full_name }}
+                                </div>
+                                <div class="col col-1">
+                                    <label for="{{ form.email.id_for_label }}">E-mailadres *</label>
+                                    {{ form.email }}
+                                </div>
+                                <div class="col col-1">
+                                    <label for="{{ form.phone.id_for_label }}">GSM / Tel. Nr.  *</label>
+                                    {{ form.phone }}
+                                </div>
+                                <div class="col col-1">
+                                    <fieldset>
+                                        <legend class="like-label">Voor welke diensten wil je een afspraak?</legend>
+
+                                        <div class="check-row">
+                                            {% for appointment in form.appointments %}
+                                                <div class="check-col">
+                                                    {{ appointment.tag }}
+                                                    <label for="{{ appointment.id_for_label }}">{{ appointment.choice_label }}</label>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                                <div class="col col-1">
+                                    <label for="formfield-11">Geschatte geveloppervlakte (in m2)</label>
+                                    <div class="col-input-like-file like-file js-like-file">
+                                        {{ form.estimate_facade_area }}
+                                        <input type="file" name="Upload" multiple accept="application/pdf, image/jpeg, image/png" id="formfield-12">
+                                        {{ form.image }}
+                                        <label for="{{ form.image.id_for_label }}">Afbeeldingen toevoegen</label>
+                                        <div class="like-file__upload-list js-like-file__upload-list"></div>
+                                    </div>
+                                </div>
+                                <div class="col col-1">
+                                    <label for="{{ form.post_code.id_for_label }}">Postcode*</label>
+                                    {{ form.post_code }}
+                                </div>
+                                <div class="col col-1">
+                                    <label for="{{ form.message.id_for_label }}">Bericht*</label>
+                                    {{ form.message }}
+                                </div>
+                                <div class="col col-1 submit-row">
+                                    <div class="privacy">Als je dit verstuurt ga je akkoord met onze <a href="{% url 'privacy_policy' %}" target="_blank">privacy policy</a>.</div>
+                                    <button type="submit" class="btn --btn-arrow">Afspraak boeken</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {% include 'includes/reviews.html' %}
+
+{% endblock %}
