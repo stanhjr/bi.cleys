@@ -132,7 +132,9 @@ class ProjectListView(ContextPageModelMixin, ListView):
     def get_context_data(self, **kwargs):
         generate_fake_projects()
         context = super().get_context_data(**kwargs)
-        context['projects_count'] = self.get_queryset().count()
+        projects_count = self.get_queryset().count()
+        context['pagination'] = projects_count > self.paginate_by
+        context['projects_count'] = projects_count
         context['categories'] = CategoryPage.objects.filter(
             children__isnull=True
         ).prefetch_related('children', 'parent')

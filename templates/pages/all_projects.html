@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-
-     
-
+    
     {% include 'includes/slider_head.html' %}
     <section class="projects-overview">
         <div class="container">
@@ -142,6 +140,7 @@
             
             </div>
             <nav role="navigation" aria-label="Pagination Navigation">
+            {% if pagination %}
                 <ul class="pagination">
                     {% if page_obj.has_previous %}
                         <li class="prev"><a href="?page={{ page_obj.previous_page_number }}{{ get_params }}" aria-label="Previous Page">&lt;</a>
@@ -177,6 +176,7 @@
                     {% endif %}
                     
                 </ul>
+            {% endif %}
             </nav>
         </div>
     </section>
