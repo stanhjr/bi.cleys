@@ -11,7 +11,7 @@
             </div>
             <nav class="projects-overview__filter">
                 <ul>
-                    <li class="active"><a href="{% url 'project_list' %}">Alles ({{ projects_count }})</a></li>
+                    <li class="active"><a href="{% url 'website:project_list' %}">Alles ({{ projects_count }})</a></li>
                     {% for category in categories %}
                         <li><a href="?category={{ category.slug }}">{{ category.name }}</a></li>
                     {% endfor %}
@@ -33,9 +33,9 @@
                     {% endif %}
 
                     {% if not forloop.counter|divisibleby:2 %}
-                        <a href="{% url 'project_single_detail' pk=project.pk %}" class="project-single --long" data-aos="fade-up">
+                        <a href="{% url 'website:project_single_detail' pk=project.pk %}" class="project-single --long" data-aos="fade-up">
                     {% else %}
-                         <a href="{% url 'project_single_detail' pk=project.pk %}" class="project-single" data-aos="fade-up">
+                         <a href="{% url 'website:project_single_detail' pk=project.pk %}" class="project-single" data-aos="fade-up">
                     {% endif %}
                             <div class="project-single__img">
                                 {% for item in project.preview_images.all %}

@@ -8,13 +8,13 @@
                     <p>{{ page_model.completed_projects_block_description }}</p>
                 </div>
                 <div class="btn-block">
-                    <a href="{% url 'project_list' %}" class="btn --btn-arrow">Alle projecten</a>
+                    <a href="{% url 'website:project_list' %}" class="btn --btn-arrow">Alle projecten</a>
                 </div>
             </div>
             <div class="projects__slider js-projects-slider --flex-slider" data-aos="fade-up">
                 {% for project in projects %}
                 <div class="projects__item">
-                    <a href="{% url 'project_single_detail' pk=project.pk %}" class="project-single">
+                    <a href="{% url 'website:project_single_detail' pk=project.pk %}" class="project-single">
                         <div class="project-single__img">
                             <!-- NOTE The second img showing by hover -->
                             {% for image_item in project.preview_images.all %}

@@ -13,7 +13,7 @@
                                 {{ page_model.introduction_left_content | safe }}
                             </div>
                             <div class="btn-block">
-                                <a href="{% url 'make_appointment' %}" class="btn --btn-arrow">Boek een afspraak</a>
+                                <a href="{% url 'website:make_appointment' %}" class="btn --btn-arrow">Boek een afspraak</a>
                             </div>
                         </div>
                         <div class="introduction__right">
@@ -23,7 +23,7 @@
                                 {{ page_model.get_introduction_right_content | safe }}
                             </ul>
                             <div class="btn-block">
-                                <a href="{% url 'make_appointment' %}" class="btn --btn-arrow">Gratis offerte</a>
+                                <a href="{% url 'website:make_appointment' %}" class="btn --btn-arrow">Gratis offerte</a>
                             </div>
                         </div>
                     </div>

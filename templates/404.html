@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Pagina niet gevonden{% endblock %}
+{% block meta_title %}Pagina niet gevonden{% endblock %}
+{% block meta_description %}Sorry, de pagina die je probeert te bekijken kan niet gevonden worden.{% endblock %}
+{% block meta_robots %}noindex,nofollow{% endblock %}
+{% block content %}
+
+    <section class="history">
+        <div class="container">
+            <div class="history__inner">
+                <div class="history__list">
+                    <h2 class="like-h2">Pagina niet gevonden</h2>
+                        <div class="desc">
+                            <p>Sorry, de pagina die je probeert te bekijken kan niet gevonden worden.</p>
+                            <p>Was je op zoek naar informatie over onze <a href="{% url 'website:about_us' %}">diensten</a>? Of wil je graag onze <a href="{% url 'website:about_us' %}">geschiedenis</a>?</p>
+                            <p>Klik <a href="{% url 'website:index' %}">hier</a> om terug te keren naar de startpagina of <a href="{% url 'website:contact_page' %}">contacteer</a> een van onze medewerkers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+{% endblock %}

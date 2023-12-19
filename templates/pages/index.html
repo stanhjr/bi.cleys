@@ -17,7 +17,7 @@
                 </div>
                 <div class="services-overview__list" data-aos="fade-up">
                     {% for category in categories %}
-                          <a href="{% url 'category_page_detail' slug=category.slug %}" class="services-overview__item">
+                          <a href="{% url 'website:category_page_detail' slug=category.slug %}" class="services-overview__item">
                         <div class="services-overview__item-header">
                             <div class="icon">
                                 {% if category.index_preview_icon %}

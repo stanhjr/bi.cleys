@@ -12,9 +12,11 @@ from apps.website.views import (
     SingleProjectDetailView,
 )
 
+app_name = 'website'
+
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
-    path('about-us', AboutUsView.as_view(), name='about_us'),
+    path('about-us/', AboutUsView.as_view(), name='about_us'),
     path('make-appointment/', MakeAppointmentView.as_view(), name='make_appointment'),
     path('contacts/', ContactView.as_view(), name='contact_page'),
     path('premies-leningen/', PremiumLoansPageView.as_view(), name='premium_loans'),

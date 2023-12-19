@@ -34,16 +34,16 @@
                 <h6 class="subtitle">Diensten</h6>
                 <ul>
                      {% for page in category_pages %}
-                          <li><a href="{% url 'category_page_detail' slug=page.slug %}"> {{ page.name }} </a></li>
+                          <li><a href="{% url 'website:category_page_detail' slug=page.slug %}"> {{ page.name }} </a></li>
                     {% endfor %}
                 </ul>
             </div>
             <div class="footer-top__col --menu">
                 <h6 class="subtitle">Menu</h6>
                 <ul>
-                    <li><a href="{% url 'about_us' %}">Over ons</a></li>
-                   <li><a href="{% url 'project_list' %}">Projecten</a></li>
-                    <li><a href="{% url 'premium_loans' %}">Premies & leningen</a></li>
+                    <li><a href="{% url 'website:about_us' %}">Over ons</a></li>
+                   <li><a href="{% url 'website:project_list' %}">Projecten</a></li>
+                    <li><a href="{% url 'website:premium_loans' %}">Premies & leningen</a></li>
                 </ul>
             </div>
         </div>
@@ -54,7 +54,7 @@
         <div class="footer-bottom__inner">
             <ul>
                 <li><a href="#">Algemene voorwaarden</a></li>
-                <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
+                <li><a href="{% url 'website:privacy_policy' %}">Privacy Policy</a></li>
                 <li><a href="#">Cookiestatement</a></li>
             </ul>
             <div class="codelines">#codedwithlove by <a href="https://codelines.be" target="_blank" rel="noopener noreferrer">Codelines</a></div>

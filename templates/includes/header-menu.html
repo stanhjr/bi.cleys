@@ -42,11 +42,11 @@
                                 {% for page in category_pages %}
                                     {% if not page.parent %}
                                         <li>
-                                        <a href="{% url 'category_page_detail' slug=page.slug %}"> {{ page.name }} </a>
+                                        <a href="{% url 'website:category_page_detail' slug=page.slug %}"> {{ page.name }} </a>
                                         {% if page.children.all %}
                                             <ul>
                                             {% for page_child in page.children.all %}
-                                                <li><a href="{% url 'category_page_detail' slug=page_child.slug %}"> {{ page_child.name }} </a></li>
+                                                <li><a href="{% url 'website:category_page_detail' slug=page_child.slug %}"> {{ page_child.name }} </a></li>
                                             {% endfor %}
                                             </ul>
                                         {% endif %}
@@ -56,14 +56,14 @@
                             </ul>
                         </div>
                     </li>
-                    <li><a href="{% url 'about_us' %}">Over ons</a></li>
-                    <li><a href="{% url 'project_list' %}">Projecten</a></li>
-                    <li><a href="{% url 'premium_loans' %}">Premies & Leningen</a></li>
-                    <li><a href="{% url 'contact_page' %}">Contact</a></li>
+                    <li><a href="{% url 'website:about_us' %}">Over ons</a></li>
+                    <li><a href="{% url 'website:project_list' %}">Projecten</a></li>
+                    <li><a href="{% url 'website:premium_loans' %}">Premies & Leningen</a></li>
+                    <li><a href="{% url 'website:contact_page' %}">Contact</a></li>
                 </ul>
                 <div class="btn-block">
                     <a href="https://www.gevelcalculator.cleys.be/" target="_blank" class="btn">Calculator</a>
-                    <a href="{% url 'make_appointment' %}" class="btn --btn-transparent-orange">Boek afspraak</a>
+                    <a href="{% url 'website:make_appointment' %}" class="btn --btn-transparent-orange">Boek afspraak</a>
                 </div>
             </div>
         </div>

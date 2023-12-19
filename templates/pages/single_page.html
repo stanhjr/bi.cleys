@@ -116,7 +116,7 @@
                 <div class="similar-projects__list">
                     {% for similar_project in similar_projects %}
                          <div class="similar-projects__item" data-aos="fade-up">
-                        <a href="{% url 'project_single_detail' pk=similar_project.pk %}" class="project-single">
+                        <a href="{% url 'website:project_single_detail' pk=similar_project.pk %}" class="project-single">
                             <div class="project-single__img">
                                 {% for item in similar_project.preview_images.all %}
                                     <img src="{{ item.image_cut.url }}" alt="">
