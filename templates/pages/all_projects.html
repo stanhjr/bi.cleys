@@ -21,122 +21,34 @@
                 <!-- NOTE every odd "project-single" element has class="--long"
                     "--link" class can be apllied only to block which have '--long' class (also have comlitely different structure) 
                 -->
-            
-                <a href="/project-single.php" class="project-single --long" data-aos="fade-up">
-                            <div class="project-single__img">
-                                <img src="/media/single_pages/preview_images/project-single__img-1.jpg" alt="">
-                                <img src="/media/single_pages/preview_images/project-single__img-2.jpg" alt="">
-                            </div>
-                            <ul class="tag-list">
-                                <li>Gevelisolatie</li>
-                                <li>spuitkurk</li>
-                            </ul>
-                        </a>
-                <a href="/project-single.php" class="project-single" data-aos="fade-up">
-                    <div class="project-single__img">
-                        <img src="/media/single_pages/preview_images/project-single__img-1.jpg" alt="">
-                        <img src="/media/single_pages/preview_images/project-single__img-2.jpg" alt="">
-                    </div>
-                    <ul class="tag-list">
-                        <li>Kaleien</li>
-                    </ul>
-                </a>
-                 <a href="/project-single.php" class="project-single --long" data-aos="fade-up">
-                            <div class="project-single__img">
-                                <img src="/media/single_pages/preview_images/project-single__img-1.jpg" alt="">
-                                <img src="/media/single_pages/preview_images/project-single__img-2.jpg" alt="">
-                            </div>
-                            <ul class="tag-list">
-                                <li>Gevelisolatie</li>
-                                <li>spuitkurk</li>
-                            </ul>
-                        </a>
-                <a href="/project-single.php" class="project-single" data-aos="fade-up">
-                    <div class="project-single__img">
-                        <img src="/media/single_pages/preview_images/project-single__img-1.jpg" alt="">
-                        <img src="/media/single_pages/preview_images/project-single__img-2.jpg" alt="">
-                    </div>
-                    <ul class="tag-list">
-                        <li>Kaleien</li>
-                    </ul>
-                </a>
-                <a href="#" class="project-single --long --link" data-aos="fade-up">
+                {% for project in projects %}
+                    {% if forloop.counter == 5 %}
+                        <a href="#" class="project-single --long --link" data-aos="fade-up">
                             <div class="project-single__link">
                                 <h3 class="like-h2">Wil je dat jouw project hier ook tussen staat?</h3>
                                 <div>We trachten van ieder project een topreferentie te maken, om zo nieuwe klanten te overtuigen.</div>
                                 <span class="read-more --white">offerte vragen</span>
                             </div>
                         </a>
-                 
-                <a href="/project-single.php" class="project-single" data-aos="fade-up">
-                    <div class="project-single__img">
-                        <img src="/media/single_pages/preview_images/project-single__img-1.jpg" alt="">
-                        <img src="/media/single_pages/preview_images/project-single__img-2.jpg" alt="">
-                    </div>
-                    <ul class="tag-list">
-                        <li>Kaleien</li>
-                    </ul>
-                </a>
-                 <a href="/project-single.php" class="project-single --long" data-aos="fade-up">
+                    {% endif %}
+
+                    {% if not forloop.counter|divisibleby:2 %}
+                        <a href="{% url 'project_single_detail' pk=project.pk %}" class="project-single --long" data-aos="fade-up">
+                    {% else %}
+                         <a href="{% url 'project_single_detail' pk=project.pk %}" class="project-single" data-aos="fade-up">
+                    {% endif %}
                             <div class="project-single__img">
-                                <img src="/media/single_pages/preview_images/project-single__img-1.jpg" alt="">
-                                <img src="/media/single_pages/preview_images/project-single__img-2.jpg" alt="">
+                                {% for item in project.preview_images.all %}
+                                    <img src="{{ item.image.url }}" alt="">
+                                {% endfor %}
                             </div>
                             <ul class="tag-list">
-                                <li>Gevelisolatie</li>
-                                <li>spuitkurk</li>
+                                {% for category in project.related_categories.all %}
+                                    <li>{{ category.name }}</li>
+                                {% endfor %}
                             </ul>
                         </a>
-                <a href="/project-single.php" class="project-single" data-aos="fade-up">
-                    <div class="project-single__img">
-                        <img src="/media/single_pages/preview_images/project-single__img-1.jpg" alt="">
-                        <img src="/media/single_pages/preview_images/project-single__img-2.jpg" alt="">
-                    </div>
-                    <ul class="tag-list">
-                        <li>Kaleien</li>
-                    </ul>
-                </a>
-                <a href="/project-single.php" class="project-single --long" data-aos="fade-up">
-                            <div class="project-single__img">
-                                <img src="/media/single_pages/preview_images/project-single__img-1.jpg" alt="">
-                                <img src="/media/single_pages/preview_images/project-single__img-2.jpg" alt="">
-                            </div>
-                            <ul class="tag-list">
-                                <li>Gevelisolatie</li>
-                                <li>spuitkurk</li>
-                            </ul>
-                        </a>
-            
-            
-                
-{#                {% for project in projects %}#}
-{#                    {% if forloop.counter == 5 %}#}
-{#                        <a href="#" class="project-single --long --link" data-aos="fade-up">#}
-{#                            <div class="project-single__link">#}
-{#                                <h3 class="like-h2">Wil je dat jouw project hier ook tussen staat?</h3>#}
-{#                                <div>We trachten van ieder project een topreferentie te maken, om zo nieuwe klanten te overtuigen.</div>#}
-{#                                <span class="read-more --white">offerte vragen</span>#}
-{#                            </div>#}
-{#                        </a>#}
-{#                    {% endif %}#}
-{##}
-{#                    {% if not forloop.counter|divisibleby:2 %}#}
-{#                        <a href="{% url 'project_single_detail' pk=project.pk %}" class="project-single --long" data-aos="fade-up">#}
-{#                    {% else %}#}
-{#                         <a href="{% url 'project_single_detail' pk=project.pk %}" class="project-single" data-aos="fade-up">#}
-{#                    {% endif %}#}
-{#                            <div class="project-single__img">#}
-{#                                {% for item in project.preview_images.all %}#}
-{#                                    <img src="{{ item.image.url }}" alt="">#}
-{#                                {% endfor %}#}
-{#                            </div>#}
-{#                            <ul class="tag-list">#}
-{#                                {% for category in project.related_categories.all %}#}
-{#                                    <li>{{ category.name }}</li>#}
-{#                                {% endfor %}#}
-{#                            </ul>#}
-{#                        </a>#}
-{#                {% endfor %}#}
+                {% endfor %}
             
             </div>
             <nav role="navigation" aria-label="Pagination Navigation">

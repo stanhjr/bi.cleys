@@ -3703,10 +3703,12 @@ main {
     padding-bottom: 73.684%;
 }
 
-.projects-overview__list .project-single img {
+.projects-overview__list .project-single__img {
+    position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    left: 0;
+    top: 0;
 }
 
 
