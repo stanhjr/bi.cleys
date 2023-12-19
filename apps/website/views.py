@@ -121,7 +121,7 @@ class ProjectListView(ContextPageModelMixin, ListView):
     model = SingleProjectModel
     page_model = AllProjectPageModel
     context_object_name = 'projects'
-    paginate_by = 30
+    paginate_by = 17
 
     def get_queryset(self):
         category_slug = self.request.GET.get('category')

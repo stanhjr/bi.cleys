@@ -220,6 +220,7 @@ ADMIN_REORDER = (
      'models': (
          {'model': 'website.Feedback', 'label': 'About Us Feedback'},
          {'model': 'website.ContactFeedbackModel', 'label': 'Contacts Feedback'},
+         {'model': 'website.ServicesAppointment', 'label': 'Check Boxes Appointment'},
      )
      },
 

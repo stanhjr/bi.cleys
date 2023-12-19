@@ -28,7 +28,6 @@ def generate_fake_projects():
                    field.name not in ('id', 'page', 'created_at', 'updated_at', 'related_categories')}
             )
             for random_categories in random.sample(categories, 2):
-                print(random_categories)
                 new_project.related_categories.add(random_categories)
 
             for slider in project.sliders.all():
