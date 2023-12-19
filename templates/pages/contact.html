@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load recaptcha3 %}
 {% load static %}
 
         {% include 'includes/slider_head.html' %}
@@ -42,6 +43,8 @@
                     <div class="contact__form">
                         <form action="" method="post">
                             {% csrf_token %}
+                            {{ form.recaptcha }}
+                            {{ form.recaptcha.errors }}
                             <div class="form-row">
                                 <div class="col col-1">
                                     <label for="{{ form.full_name.id_for_label }}">Volledige naam *</label>

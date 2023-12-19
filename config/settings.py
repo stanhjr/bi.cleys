@@ -10,12 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
+import sys
 from pathlib import Path
 
 import django
+from dj_database_url import parse as parse_database_url
+from django.core.management.utils import get_random_secret_key
 from django.utils.translation import gettext_lazy
+from dotenv import load_dotenv
 
 django.utils.translation.ugettext_lazy = gettext_lazy
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,12 +30,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-r8axs$_uky2hzm^-i26ir+uvqq@ab)s7!jm6v5hfq0zh3zglfq'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEVELOPMENT = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1,localhost,www.localhost').split(',')
+INTERNAL_IPS = ["127.0.0.1"]
 
 # Application definition
 
@@ -40,13 +48,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 3rd party,
     'imagekit',
     'ckeditor',
     'django_filters',
     'admin_reorder',
     'snowpenguin.django.recaptcha3',
+    # local
     'apps.website',
-
 ]
 
 MIDDLEWARE = [
@@ -89,12 +98,20 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+if DEVELOPMENT:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+    if os.getenv('DATABASE_URL', None) is None:
+        raise Exception('DATABASE_URL environment variable not defined')
+    DATABASES = {
+        'default': parse_database_url(os.environ.get('DATABASE_URL'), conn_max_age=600)
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -128,13 +145,34 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "config/static",
-]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# https://docs.djangoproject.com/en/4.2/howto/static-files/
+STATICFILES_DIRS = (BASE_DIR.joinpath('config/static'),)
+if DEVELOPMENT:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = BASE_DIR / 'static'
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = BASE_DIR / 'media'
+else:
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_ENDPOINT_URL = os.getenv('AWS_S3_ENDPOINT_URL')
+    AWS_S3_CUSTOM_DOMAIN = os.getenv('AWS_S3_CUSTOM_DOMAIN')
+    AWS_OBJECT_PARAMETERS = {
+        'CacheControl': 'max-age=86400'
+    }
+    AWS_DEFAULT_ACL = 'public-read'
+    AWS_QUERYSTRING_AUTH = False
+    STATICFILES_STORAGE = 'config.custom_storages.StaticStorage'
+    DEFAULT_FILE_STORAGE = 'config.custom_storages.MediaStorage'
+    STATIC_URL = 'https://{}/static/'.format(
+        AWS_S3_CUSTOM_DOMAIN,
+    )
+    MEDIA_URL = 'https://{}/media/'.format(
+        AWS_S3_CUSTOM_DOMAIN,
+    )
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -228,16 +266,15 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' if DEBUG else \
-                'django.core.mail.backends.smtp.EmailBackend'
+    'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = os.getenv('SENDGRID_API_KEY')
 EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = 'phenix.be <artem@codelines.be>'
-DEFAULT_TO_EMAIL = 'artem@codelines.be'
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+DEFAULT_TO_EMAIL = os.getenv('DEFAULT_TO_EMAIL')
 
 RECAPTCHA_DISABLE = os.getenv('RECAPTCHA_DISABLE', True)
 RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
