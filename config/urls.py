@@ -19,8 +19,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from apps.website import views
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.website.urls')),
@@ -38,5 +36,4 @@ if settings.DEBUG:
         document_root=settings.MEDIA_ROOT
     )
 handler404 = 'apps.website.views.handler404'
-# handler404 = views.handler404
-# handler500 = views.handler500
+handler500 = 'apps.website.views.handler500'
