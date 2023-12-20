@@ -42,7 +42,9 @@ class Feedback(TimeStampedModel):
     estimate_facade_area = models.CharField(max_length=100)
     image = models.ImageField(
         upload_to='feedbacks/',
-        verbose_name='feedback'
+        verbose_name='feedback',
+        null=True,
+        blank=True
     )
     appointments = models.ManyToManyField("ServicesAppointment", related_name='feedbacks', null=True, blank=True)
 
