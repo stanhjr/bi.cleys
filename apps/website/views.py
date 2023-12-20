@@ -69,7 +69,7 @@ class MakeAppointmentView(ContextPageModelMixin, CreateView):
     model = Feedback
     form_class = FeedbackForm
     template_name = 'pages/make_appointment.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('website:index')
     page_model = MakeAppointmentPageModel
 
 
@@ -77,7 +77,7 @@ class ContactView(ContextPageModelMixin, CreateView):
     model = ContactFeedbackModel
     form_class = ContactFeedbackForm
     template_name = 'pages/contact.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('website:index')
     page_model = ContactPageModel
 
 
