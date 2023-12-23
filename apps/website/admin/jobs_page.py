@@ -16,7 +16,7 @@ class JobsImageSliderModelSliderInline(admin.StackedInline):
 
 
 @admin.register(JobsPageModel)
-class AboutUsPageAdmin(admin.ModelAdmin):
+class AboutUsPageAdmin(NoDeleteModelAdminMixin, admin.ModelAdmin):
     inlines = [
         JobsImageSliderModelSliderInline,
         VacationModelInline
