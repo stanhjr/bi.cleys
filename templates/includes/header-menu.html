@@ -35,7 +35,7 @@
             <div class="header-nav__bottom-inner">
                 <div class="logo hide-mobile"><a href="/" aria-label="Cleys"><img src="{% static 'assets/images/Cleys.svg' %}" alt=""></a></div>
                 <ul class="main-menu">
-                    <li class="submenu active">
+                    <li class="submenu {{ sub_menu_active }}">
                         <span>Wat we doen</span>
                         <div class="submenu-child">
                             <ul>
@@ -56,10 +56,10 @@
                             </ul>
                         </div>
                     </li>
-                    <li><a href="{% url 'website:about_us' %}">Over ons</a></li>
-                    <li><a href="{% url 'website:project_list' %}">Projecten</a></li>
-                    <li><a href="{% url 'website:premium_loans' %}">Premies & Leningen</a></li>
-                    <li><a href="{% url 'website:contact_page' %}">Contact</a></li>
+                    <li class="{{ about_us_active }}"><a href="{% url 'website:about_us' %}">Over ons</a></li>
+                    <li class="{{ project_list_active }}"><a href="{% url 'website:project_list' %}">Projecten</a></li>
+                    <li class="{{ premium_loans_active }}"><a href="{% url 'website:premium_loans' %}">Premies & Leningen</a></li>
+                    <li class="{{ contact_page_active }}"><a href="{% url 'website:contact_page' %}">Contact</a></li>
                 </ul>
                 <div class="btn-block">
                     <a href="https://www.gevelcalculator.cleys.be/" target="_blank" class="btn">Calculator</a>

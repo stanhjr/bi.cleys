@@ -6,12 +6,10 @@ from apps.website.models.category_page import CategoryPage
 from apps.website.models.single_project import (
     GalleryItemModel,
     PreviewItemModel,
-    SinglePageCalculatorBlock,
     SinglePageResultBlock,
     SingleProjectModel,
     SingleProjectSliderModel,
     SpecificationsBlockOne,
-    SpecificationsBlockTwo,
 )
 
 
@@ -48,13 +46,6 @@ def generate_fake_projects():
                 SpecificationsBlockOne.objects.create(
                     page=new_project,
                     **{field.name: getattr(spec, field.name) for field in SpecificationsBlockOne._meta.fields if
-                       field.name not in ('id', 'page', 'created_at', 'updated_at')}
-                )
-
-            for spec in project.specifications_block_two.all():
-                SpecificationsBlockTwo.objects.create(
-                    page=new_project,
-                    **{field.name: getattr(spec, field.name) for field in SpecificationsBlockTwo._meta.fields if
                        field.name not in ('id', 'page', 'created_at', 'updated_at')}
                 )
 

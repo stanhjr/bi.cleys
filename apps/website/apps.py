@@ -6,4 +6,6 @@ class WebsiteConfig(AppConfig):
     name = 'apps.website'
 
     def ready(self):
-        from apps.website.signals import send_email_after_feedback_signal  # noqa
+        from apps.website.signals import send_email_after_contact_feedback_signal # noqa
+        from apps.website.signals import send_email_after_feedback_signal # noqa
+

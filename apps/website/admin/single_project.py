@@ -8,7 +8,6 @@ from apps.website.models.single_project import (
     SingleProjectModel,
     SingleProjectSliderModel,
     SpecificationsBlockOne,
-    SpecificationsBlockTwo,
 )
 
 
@@ -24,11 +23,6 @@ class GalleryItemModelInline(admin.StackedInline):
 
 class SpecificationsBlockOneInline(admin.StackedInline):
     model = SpecificationsBlockOne
-    extra = 0
-
-
-class SpecificationsBlockTwoInline(admin.StackedInline):
-    model = SpecificationsBlockTwo
     extra = 0
 
 
@@ -53,7 +47,6 @@ class SingleProjectModelAdmin(admin.ModelAdmin):
         SingleProjectSliderModelInline,
         GalleryItemModelInline,
         SpecificationsBlockOneInline,
-        SpecificationsBlockTwoInline,
         SinglePageResultBlockInline,
         SinglePageCalculatorBlockInline,
         PreviewItemModelInline,

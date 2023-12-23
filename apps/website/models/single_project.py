@@ -18,6 +18,8 @@ class SingleProjectModel(MetaPageAbstractModel):
     gallery_sub_title = models.TextField()
     show_booking_section = models.BooleanField(default=True)
     specifications_block_one_title = models.TextField()
+    specifications_block_one_column_left = models.TextField(null=True, blank=True)
+    specifications_block_one_column_right = models.TextField(null=True, blank=True)
     specifications_block_tow_title = models.TextField()
 
     def __str__(self):
@@ -68,14 +70,6 @@ class SpecificationsBlockOne(TimeStampedModel):
 
     def __str__(self):
         return f'SpecificationsBlockOne {self.title}'
-
-
-class SpecificationsBlockTwo(TimeStampedModel):
-    page = models.ForeignKey(SingleProjectModel, on_delete=models.CASCADE, related_name='specifications_block_two')
-    content = models.TextField()
-
-    def __str__(self):
-        return f'SpecificationsBlockTwo {self.pk}'
 
 
 class SinglePageResultBlock(AbstractResultBlock):

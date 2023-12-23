@@ -59,6 +59,11 @@ class AboutUsView(ContextPageModelMixin, TemplateView):
     template_name = 'pages/about_us.html'
     page_model = AboutUsPageModel
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['about_us_active'] = "active"
+        return context
+
 
 class PrivacyPolicyView(ContextPageModelMixin, TemplateView):
     template_name = 'pages/privacy_policy.html'
@@ -69,7 +74,7 @@ class MakeAppointmentView(ContextPageModelMixin, CreateView):
     model = Feedback
     form_class = FeedbackForm
     template_name = 'pages/make_appointment.html'
-    success_url = reverse_lazy('website:index')
+    success_url = reverse_lazy('website:make_appointment')
     page_model = MakeAppointmentPageModel
 
 
@@ -77,13 +82,24 @@ class ContactView(ContextPageModelMixin, CreateView):
     model = ContactFeedbackModel
     form_class = ContactFeedbackForm
     template_name = 'pages/contact.html'
-    success_url = reverse_lazy('website:index')
+    success_url = reverse_lazy('website:contact_page')
     page_model = ContactPageModel
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['contact_page_active'] = "active"
+        return context
+
 
 
 class PremiumLoansPageView(ContextPageModelMixin, TemplateView):
     template_name = 'pages/premies_leningen.html'
     page_model = PremiumLoansPageModel
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['premium_loans_active'] = "active"
+        return context
 
 
 class CategoryDetailView(DetailView):
@@ -95,7 +111,13 @@ class CategoryDetailView(DetailView):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
         context['appointment_model'] = AppointmentModel.objects.last()
-        context['projects'] = SingleProjectModel.objects.filter(related_categories=self.object)
+        if self.object.children.exists():
+            projects = SingleProjectModel.objects.filter(related_categories__in=self.object.children.all())
+        else:
+            projects = SingleProjectModel.objects.filter(related_categories=self.object)
+        context['projects'] = projects
+        context['sub_menu_active'] = "active"
+
         return self.render_to_response(context)
 
 
@@ -134,6 +156,7 @@ class ProjectListView(ContextPageModelMixin, ListView):
         generate_fake_projects()
         context = super().get_context_data(**kwargs)
         projects_count = self.get_queryset().count()
+        context['project_list_active'] = "active"
         context['pagination'] = projects_count > self.paginate_by
         context['projects_count'] = projects_count
         context['categories'] = CategoryPage.objects.filter(
