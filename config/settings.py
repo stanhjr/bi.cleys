@@ -203,9 +203,11 @@ ADMIN_REORDER = (
          {'model': 'website.MakeAppointmentPageModel', 'label': 'Make Appointment Page'},
          {'model': 'website.PremiumLoansPageModel', 'label': 'Premium Loans Page'},
          {'model': 'website.CalculatedBlockModel', 'label': 'Calculator Page'},
-         {'model': 'website.PrivacyPolicyModel', 'label': 'Privacy Policy Page'},
          {'model': 'website.AllProjectPageModel', 'label': 'All Project Page'},
          {'model': 'website.IndexPageModel', 'label': 'Home Page'},
+         {'model': 'website.PrivacyPolicyModel', 'label': 'Privacy Policy Page'},
+         {'model': 'website.CookieModel', 'label': 'Cookies Page'},
+         {'model': 'website.TermsAndConditionsModel', 'label': 'Terms And Conditions Page'},
      )
      },
     {'app': 'website',

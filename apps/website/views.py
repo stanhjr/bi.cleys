@@ -19,6 +19,7 @@ from apps.website.models.base import AppointmentModel
 from apps.website.models.contact_page import ContactFeedbackModel, ContactPageModel
 from apps.website.models.index import IndexPageModel
 from apps.website.models.make_appointment import Feedback, MakeAppointmentPageModel
+from apps.website.models.privacy_policy import CookieModel, TermsAndConditionsModel
 from apps.website.models.single_project import SingleProjectModel
 from apps.website.utils import generate_fake_projects
 
@@ -66,8 +67,18 @@ class AboutUsView(ContextPageModelMixin, TemplateView):
 
 
 class PrivacyPolicyView(ContextPageModelMixin, TemplateView):
-    template_name = 'pages/privacy_policy.html'
+    template_name = 'pages/base_policy.html'
     page_model = PrivacyPolicyModel
+
+
+class CookiesView(ContextPageModelMixin, TemplateView):
+    template_name = 'pages/base_policy.html'
+    page_model = CookieModel
+
+
+class TermsAndConditionsView(ContextPageModelMixin, TemplateView):
+    template_name = 'pages/base_policy.html'
+    page_model = TermsAndConditionsModel
 
 
 class MakeAppointmentView(ContextPageModelMixin, CreateView):
