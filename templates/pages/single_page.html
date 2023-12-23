@@ -92,7 +92,7 @@
                     <h3 class="like-h3">{{ page_model.specifications_block_tow_title }}</h3>
                 </div>
                 <div class="specification__content --content">
-                    
+
                 <div class="col">
                     <p>{{ page_model.specifications_block_one_column_left }}</p>
                 </div>
@@ -126,7 +126,7 @@
                                 {% endfor %}
                             </div>
                             <ul class="tag-list">
-                                {% for category in similar_project.categories.all %}
+                                {% for category in similar_project.related_categories.all %}
                                     <li>{{ category.name }}</li>
                                 {% endfor %}
                             </ul>
