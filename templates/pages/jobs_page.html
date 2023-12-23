@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        {% include 'includes/slider_head.html' %}
+        {% include 'includes/sections/introduction_section.html' %}
+        <section class="jobs">
+                <div class="container">
+                    <div class="jobs__header">
+                        <h2 class="like-h3">Onze vacatures</h2>
+                    </div>
+                    <div class="jobs__inner">
+                        <div class="jobs__nav">
+                            <ul>
+                                {% for vacancy in  page_model.vacations.all %}
+                                    {% if vacancy.slug == active_vacancy.slug %}
+                                        <li><a class="active" href="{% url 'website:jobs_page' %}?vacancy_slug={{ vacancy.slug }}">{{ vacancy.name }}</a></li>
+                                    {% else %}
+                                        <li><a href="{% url 'website:jobs_page' %}?vacancy_slug={{ vacancy.slug }}">{{ vacancy.name }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="jobs__content">
+                            <div class="article-body --content">
+                                <h3>{{ active_vacancy.title }}</h3>
+                                <p>{{ active_vacancy.description }}</p>
+                                   {{ active_vacancy.content | safe }}
+                            </div>
+                            <div class="jobs__content-footer">
+                                <h6>Geïnteresseerd?</h6>
+                                <p>Stuur jouw cv en motivvatiebreif door naar <a href="mailto:jobs@cleys.be">jobs@cleys.be</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+        {% include 'includes/reviews.html' %}
+
+{% endblock %}

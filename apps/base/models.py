@@ -76,8 +76,8 @@ class AbstractSliderModel(TimeStampedModel):
             )
         ```
     """
-    slider_title = models.CharField(max_length=255)
-    slider_body = models.CharField(max_length=255)
+    slider_title = models.TextField()
+    slider_body = models.TextField()
     banner_image = models.ImageField(
         upload_to='sliders/banner_fills/',
         verbose_name='banner_fill',

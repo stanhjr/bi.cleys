@@ -4,6 +4,7 @@ import apps.website.admin.base
 import apps.website.admin.category_page
 import apps.website.admin.contacts_page
 import apps.website.admin.index_page
+import apps.website.admin.jobs_page
 import apps.website.admin.make_appointment_page
 import apps.website.admin.premium_loans_page
 import apps.website.admin.privacy_policy_page

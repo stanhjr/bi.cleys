@@ -208,6 +208,7 @@ ADMIN_REORDER = (
          {'model': 'website.PrivacyPolicyModel', 'label': 'Privacy Policy Page'},
          {'model': 'website.CookieModel', 'label': 'Cookies Page'},
          {'model': 'website.TermsAndConditionsModel', 'label': 'Terms And Conditions Page'},
+         {'model': 'website.JobsPageModel', 'label': 'Jobs Page'},
      )
      },
     {'app': 'website',

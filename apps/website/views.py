@@ -11,6 +11,7 @@ from apps.website.forms import ContactFeedbackForm, FeedbackForm
 from apps.website.models import (
     AllProjectPageModel,
     CategoryPage,
+    JobsPageModel,
     PremiumLoansPageModel,
     PrivacyPolicyModel,
 )
@@ -18,6 +19,7 @@ from apps.website.models.about_us import AboutUsPageModel
 from apps.website.models.base import AppointmentModel
 from apps.website.models.contact_page import ContactFeedbackModel, ContactPageModel
 from apps.website.models.index import IndexPageModel
+from apps.website.models.jobs_page import VacationModel
 from apps.website.models.make_appointment import Feedback, MakeAppointmentPageModel
 from apps.website.models.privacy_policy import CookieModel, TermsAndConditionsModel
 from apps.website.models.single_project import SingleProjectModel
@@ -79,6 +81,20 @@ class CookiesView(ContextPageModelMixin, TemplateView):
 class TermsAndConditionsView(ContextPageModelMixin, TemplateView):
     template_name = 'pages/base_policy.html'
     page_model = TermsAndConditionsModel
+
+
+class JobsView(ContextPageModelMixin, TemplateView):
+    template_name = 'pages/jobs_page.html'
+    page_model = JobsPageModel
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        vacancy_slug = self.request.GET.get("vacancy_slug", "")
+        active_vacancy = VacationModel.objects.filter(slug=vacancy_slug).first()
+        if not active_vacancy:
+            active_vacancy = VacationModel.objects.first()
+        context['active_vacancy'] = active_vacancy
+        return context
 
 
 class MakeAppointmentView(ContextPageModelMixin, CreateView):

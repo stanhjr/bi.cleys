@@ -21,6 +21,7 @@ from apps.website.models.category_page import (
     ResultBlock,
     VideoBlock,
 )
+from apps.website.models.jobs_page import JobsPageModel
 from apps.website.models.make_appointment import (
     MakeAppointmentAdvantage,
     MakeAppointmentPageModel,
